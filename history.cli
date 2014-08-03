@@ -1,0 +1,311 @@
+    1  startx
+    2  exit
+    3  su -s
+    4  cd
+    5  sudo -s
+    6  exit
+    7  apt-get install virtualbox
+    8  uname -m
+    9  apt-cache search vagrant 
+   10  apt-get install vagrant
+   11  ls
+   12  pwd
+   13  mkdir .vm
+   14  cd .vm/
+   15  ls
+   16  vagrant init
+   17  ls
+   18  vi Vagrantfile 
+   19  exit
+   20  ls
+   21  pwd
+   22  cd .vm/
+   23  ls
+   24  ls -la
+   25  exit
+   26  cd
+   27  sudo -s
+   28  history |grep vagrant
+   29  vagrant ssh
+   30  htop
+   31  ls
+   32  cd ..
+   33  ls
+   34  cd .VirtualBox/
+   35  ls
+   36  cd ..
+   37  ls
+   38  ls -la |grep virtu
+   39  ls -la |grep Virtu
+   40  cd .VirtualBox/
+   41  ls
+   42  ls-la
+   43  ll
+   44  cd /root/
+   45  ls
+   46  cd VirtualBox\ VMs/
+   47  ls
+   48  cd IDS/
+   49  ls
+   50  ls -la
+   51  ls -lah
+   52  cd ..
+   53  ls
+   54  vagrant ssh
+   55  cd .vm/
+   56  ls
+   57  cd 
+   58  cd /home/chika/
+   59  ls
+   60  cd .vm/
+   61  ls
+   62  vi Vagrantfile
+   63  cd 
+   64  pwd
+   65  cd .vagrant.d/
+   66  ls
+   67  cd boxes/
+   68  ls
+   69  cd IDS/
+   70  ls
+   71  cd virtualbox/
+   72  ls
+   73  vi Vagrantfile 
+   74  free -tm
+   75  history |grep IDS
+   76  exit
+   77  md5sum trusty-server-cloudimg-i386-vagrant-disk1.box > trusty-server-cloudimg-i386-vagrant-disk1.box.md5 &
+   78  agrant box add IDS t
+   79  ls
+   80  ls -la
+   81  vi Vagrantfile 
+   82  mv Vagrantfile Vagrantfile.old
+   83  ls
+   84  ls -la
+   85  chmod u+x trusty-server-cloudimg-i386-vagrant-disk1.box
+   86  vagrant box add IDS trusty-server-cloudimg-i386-vagrant-disk1.box
+   87  vagrant init IDS
+   88  vi Vagrantfile
+   89  vagrant init IDS
+   90  vagrant up
+   91  screen -S great
+   92  vagrant box remove IDS 
+   93  vagrant box remove IDS trusty-server-cloudimg-i386-vagrant-disk1.box
+   94  ls
+   95  cd ~/.vagrant.d/
+   96  ls
+   97  cd boxes/
+   98  ls
+   99  cd IDS/
+  100  ls
+  101  cd virtualbox/
+  102  ls
+  103  vagrant box remove IDS virtualbox
+  104  ls
+  105  cd ..
+  106  ls
+  107  cd ..
+  108  ls
+  109  vagrant box remove IDS virtualbox
+  110  cd ..
+  111  ls
+  112  cd
+  113  ls
+  114  cd .vm/
+  115  ls
+  116  screen -ls
+  117  exit
+  118  cd
+  119  ls
+  120  cd .vm/
+  121  ls
+  122  md5sum trusty-server-cloudimg-i386-vagrant-disk1.box >> trusty-server-cloudimg-i386-vagrant-disk1.box.md5 &
+  123  sudo -s
+  124  ls
+  125  cd /etc/vim/
+  126  ls
+  127  vi vimrc.tiny 
+  128  vi vimrc
+  129  cp vimrc ~/.vimrc
+  130  vim /home/chika/.vimrc 
+  131  ls
+  132  cd
+  133  vim .vimrc 
+  134  apt-cache search ntp
+  135  apt-cache search ntp|grep date
+  136  exit
+  137  vagrant ssh
+  138  ls
+  139  wget https://gist.github.com/chikatambun/578fec543d4c427d27b0/download
+  140  man wget
+  141  rm download 
+  142  wget -qO server.sh && chmod u+x server.sh
+  143  wget -qO server.sh https://gist.github.com/chikatambun/578fec543d4c427d27b0/download && chmod u+x server.sh
+  144  exit
+  145  vi server.sh 
+  146  wget -qO server.sh https://gist.github.com/chikatambun/578fec543d4c427d27b0/download
+  147  vi server.sh 
+  148  exit
+  149  cd
+  150  ls
+  151  vi .vimrc
+  152  byobu
+  153  killall vi
+  154  killall vim
+  155  ps aux|grep vim
+  156  kill -9 18851
+  157  killall ssh
+  158  ps aux|grep ssh
+  159  service restart ssh
+  160  service ssh restart
+  161  service ssh stop
+  162  ps aux|grep ssh
+  163  ps aux|grep vi
+  164  ps aux|grep vim
+  165  service ssh restart
+  166  exit
+  167  virtualbox > /dev/null 2>1&
+  168  byobu -r
+  169  exit
+  170  sudo -s
+  171  sudo -H byobu -r
+  172  sudo -H byobu
+  173  cd .vm/
+  174  ls
+  175  history |grep vagrant
+  176  ls
+  177  vagrant destroy
+  178  vagrant up
+  179  vagrant box add trusty32 trusty-server-cloudimg-i386-vagrant-disk1.box
+  180  sudo -s
+  181  vagrant box add trusty32 trusty-server-cloudimg-i386-vagrant-disk1.box
+  182  vi Vagrantfile
+  183  vagrant init IDS
+  184  mv Vagrantfile Vagrantfile.work
+  185  vagrant init IDS
+  186  vi Vagrantfile
+  187  vimdiff Vagrantfile Vagrantfile.work 
+  188  vi Vagrantfile
+  189  vagrant up
+  190  vi Vagrantfile
+  191  vagrant up
+  192  vagrant halt
+  193  vagrant up
+  194  ls
+  195  mkdir ids
+  196  mv Vagrantfile ids/
+  197  ls
+  198  cd ids/
+  199  cd
+  200  vagrant ssh
+  201  cd .vm/ids/
+  202  ls
+  203  vagrant ssh
+  204  vagrant status
+  205  mv Vagrantfile ..
+  206  cd
+  207  cd .vm/
+  208  ls
+  209  vagrant ssh
+  210  vagrant reload
+  211  vi Vagrantfile
+  212  vagrant reload
+  213  vi server.sh 
+  214  vagrant ssh -h
+  215  vagrant ssh ids -c screen
+  216  vagrant ssh IDS -c screen
+  217  vi Vagrantfile
+  218  vagrant status
+  219  vagrant ssh IDS
+  220  vagrant status IDS
+  221  vagrant ssh
+  222  cd /root/
+  223  ls
+  224  cd VirtualBox\ VMs/
+  225  ls
+  226  cd IDS/
+  227  ls
+  228  ls -la
+  229  vagrant ssh
+  230  cd /home/chika/.vm/
+  231  ls
+  232  vagrant ssh
+  233  ls
+  234  vi Vagrantfile
+  235  vagrant reload
+  236  vagrant ssh server
+  237  vagrant ssh 
+  238  ls
+  239  vi server.sh 
+  240  vagrant reload
+  241  vagrant ssh 
+  242  ping -c24 archive.ubuntu.com
+  243  cd /root/
+  244  sudo -s
+  245  cd /root/
+  246  ls
+  247  ls -l VirtualBox\ VMs/
+  248  ls -la
+  249  ping sg.archive.ubuntu.com
+  250  ping sg.archive.ubuntu.com -c24
+  251  ls
+  252  clera
+  253  clear
+  254  sudo -s
+  255  vi /etc/apt/sources.list
+  256  cat /etc/apt/sources.list
+  257  sed -i 's/###deb/#####deb/g' /etc/apt/sources.list
+  258  cat /etc/apt/sources.list
+  259  cd .vm/
+  260  ls
+  261  vagrant up
+  262  vagrant status
+  263  vagrant ssh
+  264  vagrant ssh ids
+  265  vagrant up -h
+  266  ls
+  267  cd ..
+  268  ls
+  269  ssh-keygen 
+  270  clear
+  271  ssh-keygen -t rsa -C "chika.tambun@gmail.com"
+  272  cat /root/.ssh/id_rsa
+  273  cat /root/.ssh/id_rsa.pub 
+  274  ssh -T git@github.com
+  275  man ssh 
+  276  git remote add origin https://github.com/chikatambun/vagrant
+  277  cd .vm/
+  278  ls
+  279  git git remote add origin 
+  280  git clone https://github.com/chikatambun/vagrant.git .
+  281  git clone https://github.com/chikatambun/vagrant.git 
+  282  cd vagrant/
+  283  ls
+  284  vi README.md 
+  285  cd ..
+  286  ls
+  287  cd vagrant/
+  288  ls
+  289  touch why
+  290  git add  why
+  291  git commit -m '0 commit'
+  292  git add ~/.screenrc ~/.vimrc ../Vagrantfile
+  293  cp ~/.screenrc ~/.vimrc ../Vagrantfile .
+  294  git add *
+  295  git commit -m 'Initial commit'
+  296  git config --global user.email chika.tambun@gmail.com
+  297  git config --global user.name "CT"
+  298  ls
+  299  vi Vagrantfile 
+  300  ls
+  301  cp ~/.screenrc .
+  302  ls
+  303  git add .*
+  304  git remote add origin https://github.com/chikatambun/vagrant.git
+  305  git push origin master
+  306  git add .vimrc
+  307  git add .screenrc
+  308  history
+  309  git commit -m "hidden conf" 
+  310  git push origin master 
+  311  history > history.cli

@@ -8,34 +8,23 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "trusty32"
-  config.vm.provision :shell, path: "server.sh"
-
-#### ids.conf
-  config.vm.define "ids" do |ids|
-    ids.vm.box = "trusty32"
-    ids.vm.provision :shell, inline: 'sudo apt-get -y install snort'
-  ids.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.name = "ids"
-      vb.customize ["modifyvm", :id, "--memory", "1024"]
-  end
-  end
-
+  config.vm.provision :shell, path: "init_base.sh"
+	config.vm.boot_timeout = 300
 
 #### client.conf
   config.vm.define "client" do |client|
     client.vm.box = "trusty32"
     client.vm.provision :shell, inline: 'sudo apt-get -y install lynx'
+
+		client.vm.network :private_network, ip:"192.168.1.33",
+			virtualbox__intnet: "my_second_private_network"
+
   client.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
+  # # Don't boot with headless mode
+  # vb.gui = true
   #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  # # Use VBoxManage to customize the VM. For example to change memory:
+  # vb.customize ["modifyvm", :id, "--memory", "1024"]
       vb.name = "client"
       vb.customize ["modifyvm", :id, "--memory", "384"]
   end
@@ -45,16 +34,39 @@ Vagrant.configure("2") do |config|
 #### server.conf
   config.vm.define "server" do |server|
     server.vm.box = "trusty32"
-    server.vm.provision :shell, inline: 'sudo apt-get -y install apache2 php5 libapache2-mod-php5 php5-mcrypt mysql-server php5-mysql php5-cli' 
+    server.vm.provision :shell, inline: 'sudo apt-get -y install apache2 php5 libapache2-mod-php5 php5-mcrypt mysql-server php5-mysql php5-cli'
+
+		server.vm.network :private_network, ip:"192.168.0.11",
+			virtualbox__intnet: "my_private_network"
 
   server.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
+  # # Don't boot with headless mode
+  # vb.gui = true
   #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  # # Use VBoxManage to customize the VM. For example to change memory:
+  # vb.customize ["modifyvm", :id, "--memory", "1024"]
       vb.name = "server"
       vb.customize ["modifyvm", :id, "--memory", "512"]
+  end
+  end
+
+
+#### ids.conf
+  config.vm.define "ids" do |ids|
+    ids.vm.box = "trusty32"
+    ids.vm.provision :shell, inline: 'sudo apt-get -y install bridge-utils snort'
+		ids.vm.network :private_network, ip:"192.168.0.22",
+			virtualbox__intnet: "my_private_network"
+		ids.vm.network :private_network, ip:"192.168.1.22",
+			virtualbox__intnet: "my_second_private_network"
+  ids.vm.provider :virtualbox do |vb|
+  # # Don't boot with headless mode
+  # vb.gui = true
+  #
+  # # Use VBoxManage to customize the VM. For example to change memory:
+  # vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.name = "ids"
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
   end
 
@@ -88,11 +100,11 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
+  # # Don't boot with headless mode
+  # vb.gui = true
   #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  # # Use VBoxManage to customize the VM. For example to change memory:
+  # vb.customize ["modifyvm", :id, "--memory", "1024"]
       vb.name = "server"
       vb.customize ["modifyvm", :id, "--memory", "384"]
   end
@@ -100,7 +112,7 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
+  # Enable provisioning with Puppet stand alone. Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
   # the file IDS.pp in the manifests_path directory.
@@ -108,19 +120,19 @@ Vagrant.configure("2") do |config|
   # An example Puppet manifest to provision the message of the day:
   #
   # # group { "puppet":
-  # #   ensure => "present",
+  # # ensure => "present",
   # # }
   # #
   # # File { owner => 0, group => 0, mode => 0644 }
   # #
   # # file { '/etc/motd':
-  # #   content => "Welcome to your Vagrant-built virtual machine!
-  # #               Managed by Puppet.\n"
+  # # content => "Welcome to your Vagrant-built virtual machine!
+  # # Managed by Puppet.\n"
   # # }
   #
   # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "manifests"
-  #   puppet.manifest_file  = "init.pp"
+  # puppet.manifests_path = "manifests"
+  # puppet.manifest_file = "init.pp"
   # end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
@@ -128,14 +140,14 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   # config.vm.provision :chef_solo do |chef|
-  #   chef.cookbooks_path = "../my-recipes/cookbooks"
-  #   chef.roles_path = "../my-recipes/roles"
-  #   chef.data_bags_path = "../my-recipes/data_bags"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
+  # chef.cookbooks_path = "../my-recipes/cookbooks"
+  # chef.roles_path = "../my-recipes/roles"
+  # chef.data_bags_path = "../my-recipes/data_bags"
+  # chef.add_recipe "mysql"
+  # chef.add_role "web"
   #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
+  # # You may also specify custom JSON attributes:
+  # chef.json = { :mysql_password => "foo" }
   # end
 
   # Enable provisioning with chef server, specifying the chef server URL,
@@ -149,8 +161,8 @@ Vagrant.configure("2") do |config|
   # validation key to validation.pem.
   #
   # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
-  #   chef.validation_key_path = "ORGNAME-validator.pem"
+  # chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
+  # chef.validation_key_path = "ORGNAME-validator.pem"
   # end
   #
   # If you're using the Opscode platform, your validator client is
@@ -159,5 +171,5 @@ Vagrant.configure("2") do |config|
   # If you have your own Chef Server, the default validation client name is
   # chef-validator, unless you changed the configuration.
   #
-  #   chef.validation_client_name = "ORGNAME-validator"
+  # chef.validation_client_name = "ORGNAME-validator"
 end

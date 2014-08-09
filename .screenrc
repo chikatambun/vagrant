@@ -49,7 +49,7 @@ hardstatus alwayslastline "%{=b}%{G}Screen @ %0`@%H: %{C}%w %=%{G}%D, %m/%d"
 screen -t ctrl 1
 screen -t supp 3
 screen -t temp 2
-screen -t mon 8 bwmon
+#screen -t mon 8 bwmon
 screen -t dae 9 tail -f /var/log/syslog
 screen -t mon 0 htop
 ####startup_message off
